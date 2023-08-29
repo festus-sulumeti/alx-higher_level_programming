@@ -1,30 +1,100 @@
 #!/usr/bin/python3
+"""A module of singly linked list using python.
 
-def matrix_mul(m_a, m_b):
-    if type(m_a) is not list or type(m_b) is not list:
-        raise TypeError('{:} must be a list'.format('m_b' if type(m_a) is list
-                                                    else 'm_a'))
-    if not m_a or not m_b:
-        raise ValueError("{:} can't be empty".format('m_b' if m_a else 'm_a'))
-    for row in m_a:
-        for num in row:
-            if not isinstance(num, (int, float)):
-                raise TypeError('m_a should contain only integers or floats')
-        if len(row) != len(row[0]):
-            raise TypeError('each row of m_a must should be of the same size')
-    for row in m_b:
-        for num in row:
-            if not isinstance(num, (int, float)):
-                raise TypeError('m_b should contain only integers or floats')
-        if len(row) != len(row[0]):
-            raise TypeError('each row of m_b must should be of the same size')
-    a_cols = len(m_a[0])
-    b_rows = len(m_b)
-    if a_cols != b_rows:
-        raise ValueError("m_a and m_b can't be multiplied")
-    a_rows = len(m_a)
-    b_cols = len(m_b[0])
-    product = []
-    for i in range(a_rows):
-        product.append([])
-    for 
+This module implements a basic singly list
+"""
+
+
+class Node:
+    """The ``Node`` of singly linked list
+    """
+    def __init__(self, data, next_node=None):
+        """Constructs ``Node`` object.
+
+        Args:
+            data (`int`): The data of the ``Node``.
+            next_node (:obj:`Node`, optional): The next ``Node``.
+
+        Raises:
+            TypeError: If ``data`` is not an integer.
+                If ``next_node`` is not a ``Node`` objet.
+        """
+        self.data = data
+        self.next_node = next_node
+
+    @property
+    def data(self):
+        """
+        Args:
+            data (`int`): The data of the ``Node``.
+
+        Raises:
+            TypeError: If ``data`` is not an integer.
+        """
+        return self._Node__data
+
+    @data.setter
+    def data(self, data):
+        if data and not isinstance(data, int):
+            raise TypeError("data must be an integer")
+        else:
+            self._Node__data = data
+
+    @property
+    def next_node(self):
+        """
+        Args:
+            data (`int`): The data of the ``Node``.
+
+        Raises:
+            TypeError: If ``data`` is not an integer.
+        """
+
+        return self._Node__next_node
+
+    @next_node.setter
+    def next_node(self, next_node):
+        if next_node and not isinstance(next_node, Node):
+            raise TypeError("next_node must be an integer")
+        else:
+            self._Node__next_node = next_node
+
+
+class SinglyLinkedList:
+    """Definition of a ``singly linked list``.
+    """
+    def __init__(self):
+        self.head = None
+
+    def __str__(self):
+        res = ""
+        tmp = self.head
+        while tmp.next_node is not None:
+            res += str(tmp.data)
+            tmp = tmp.next_node
+            if tmp.next_node is not None:
+                res += "\n"
+        return res
+
+    def sorted_insert(self, value):
+        """Inserts in a sorted ``singly linked list``
+
+        Args:
+            value (`int`): The value to insert.
+        """
+        try:
+            new_node = Node(value)
+        except Exception:
+            return
+        if not self.head:
+            self.head = new_node
+        else:
+            tmp = self.head
+            while value > tmp.data and tmp.next_node is not None:
+                prev = tmp
+                tmp = tmp.next_node
+            new_node.next_node = tmp
+            if tmp == self.head:
+                self.head = new_node
+            else:
+                prev.next_node = new_node
