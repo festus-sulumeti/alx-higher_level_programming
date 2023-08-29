@@ -1,25 +1,15 @@
 #!/usr/bin/python3
-"""
-module for matrix maths
-"""
+# 2-square.py
+# festus sulumeti
+"""Size validation: """
 
 
-def matrix_divided(matrix, div):
-    """ divides matrix by input divisor"""
-    if div == 0:
-        raise ZeroDivisionError('division by zero')
-    if not isinstance(div, (int, float)):
-        raise TypeError('div must be a number')
-    new = []
-    rowlen = len(matrix[0])
-    for row in matrix:
-        sub = []
-        if len(row) != rowlen:
-            raise TypeError('Each row of the matrix must have the same size')
-        for i in range(len(row)):
-            if not isinstance(row[i], (int, float)):
-                raise TypeError('matrix must be a matrix (list of lists) of '
-                                'integers/floats')
-            sub.append(round((row[i] / div), 2))
-        new.append(sub)
-    return new
+class Square(object):
+    """class variable size"""
+    def __init__(self, size=0):
+        """initialize size"""
+        if type(size) != int:
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = size
