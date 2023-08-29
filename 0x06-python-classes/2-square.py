@@ -3,6 +3,7 @@
 module for matrix maths
 """
 
+
 def matrix_divided(matrix, div):
     """ divides matrix by input divisor"""
     if div == 0:
@@ -10,10 +11,15 @@ def matrix_divided(matrix, div):
     if not isinstance(div, (int, float)):
         raise TypeError('div must be a number')
     new = []
+    rowlen = len(matrix[0])
     for row in matrix:
-        # This line creates a new list to store the elements of the current row,
-        # after dividing them by the divisor.
-        sub = [round((i / div), 2) for i in row]
+        sub = []
+        if len(row) != rowlen:
+            raise TypeError('Each row of the matrix must have the same size')
+        for i in range(len(row)):
+            if not isinstance(row[i], (int, float)):
+                raise TypeError('matrix must be a matrix (list of lists) of '
+                                'integers/floats')
+            sub.append(round((row[i] / div), 2))
         new.append(sub)
-    # This line returns the new list of rows.
     return new
