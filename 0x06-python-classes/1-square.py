@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-
+# 1-square.py
+# festus sulumeti
 """Private instance attribute: """
 class Square(object):
     """class variable size"""
