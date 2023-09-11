@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # 11-square.py
-# festus sulumeti 
+# festus sulumeti
 """ File name : 11-square.py
     It is not allowed to import any module
 """
