@@ -6,6 +6,7 @@
     It is not allowed to import any module
 """
 
+
 def read_file(filename=""):
     """read_file reads a text file (UTF8) and prints it to stdout
 
