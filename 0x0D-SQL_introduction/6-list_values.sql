@@ -1,2 +1,2 @@
---CReation First table
+-- First table
 SELECT * FROM first_table;
